@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "252842540085",
+    "firebase_url": "https://chiayitravel-19769.firebaseio.com",
+    "project_id": "chiayitravel-19769",
+    "storage_bucket": "chiayitravel-19769.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252842540085:android:9b086f7ced432138",
+        "android_client_info": {
+          "package_name": "jaiyou.nfu.chiayitravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252842540085-kitudsv152bqr1frfq6n29brbou1mgbg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jaiyou.nfu.chiayitravel",
+            "certificate_hash": "85f94943b47f88ac2a92f8109ce28a1d692dcc6c"
+          }
+        },
+        {
+          "client_id": "252842540085-e3apd36qh3qpm2ghcvj13rrqsv1u5b6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhdL5aFYaBXS2u7Jsa0CkWOp1yOjSaaJ0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252842540085-e3apd36qh3qpm2ghcvj13rrqsv1u5b6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

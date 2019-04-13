@@ -1,0 +1,2 @@
+Package Name: "jaiyou.nfu.chiayitravel"
+SHA1: "85f94943b47f88ac2a92f8109ce28a1d692dcc6c"

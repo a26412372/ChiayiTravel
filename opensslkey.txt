@@ -1,0 +1,21 @@
+再來會看到要求你「新增您的「開發密鑰雜湊」和「發行密鑰雜湊」」，這裡算是比較麻煩的環節，不過不要緊一步一步來。
+
+1.首先請在電腦搜尋「openssl.exe」的檔案(原則上當你安裝完android studio後，就會有這個檔案，如果沒有這裡提供連結安裝)
+2.執行「命令提示字元」，將目錄切換至「openssl.exe」的目錄
+3.輸入keytool -exportcert -alias androiddebugkey -keystore %HOMEPATH%\.android\debug.keystore | openssl sha1 -binary | openssl base64
+4.接著需要輸入密碼，密碼輸入「android」即可產生出密鑰
+5.將密鑰複製到底下，並按下「save」
+
+
+第一步的key
+
+hflJQ7R/iKwqkvgQnOKKHWktzGw=
+
+
+註記：如果是要上架的project，那麼是輸入「keytool -exportcert -alias YOUR_RELEASE_KEY_ALIAS -keystore YOUR_RELEASE_KEY_PATH | openssl sha1 -binary | openssl base64」，藍色字是要更換你的。
+
+
+第二步key
+keytool -exportcert -alias ChiayiTravel -keystore ChiayiTravel.keystore | openssl sha1 -binary | openssl base64
+
+NLgAOZVrXe8IdlYnkbHGh5Ez224=
