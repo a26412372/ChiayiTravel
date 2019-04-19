@@ -22,26 +22,14 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var callbackManager: CallbackManager? = null
     private val activityTag = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FacebookSdk.sdkInitialize(applicationContext)
-        AppEventsLogger.activateApp(this)
-
-        val goodMutSet: Set<String> = setOf("iPhone8", "Mate10", "小米6")
-        var desc = ""
-
-        goodMutSet.forEach { desc += it + "\n" }
-        textView.text = desc
-
-
         setupViews()
-        getHashKey()
-        //loginFaceBook()
+
     }
 
     private fun setupViews(){
@@ -49,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var shoplistButtonClickHandler = View.OnClickListener { view ->
-        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag).getResponse()
+        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag).getResponse()   //這是取得資料用
     }
 
     fun intent(resp: String){
@@ -59,49 +47,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun loginFaceBook(){
-        callbackManager = CallbackManager.Factory.create()
-        login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult?) {
-                textView.text = "Login Success ${result?.accessToken?.userId}"// + "${result?.accessToken?.token}"
-            }
-
-            override fun onCancel() {
-                textView.text = "Login Canceled"
-            }
-
-            override fun onError(error: FacebookException?) {
-
-            }
-        })
-    }
-
-    private fun getHashKey(){
-        try {
-            val info = packageManager.getPackageInfo("jaiyou.nfu.chiayitravel",PackageManager.GET_SIGNATURES)
-            for (signature in info.signatures){
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                Log.e("KeyHash", Base64.encodeToString(md.digest(),Base64.DEFAULT))
-            }
-        }catch (e: PackageManager.NameNotFoundException){
-        }catch (e: NoSuchAlgorithmException){ }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId){
-            R.id.menu01 -> tv_01.text = "menu1"
-            R.id.menu02 -> tv_01.text = "menu2"
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
+
 }
