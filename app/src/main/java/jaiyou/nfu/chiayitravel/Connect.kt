@@ -61,6 +61,8 @@ class Connect {
             e.printStackTrace()
         }
     }
+
+    //這邊是送resp的資料到activity
     fun intent(activityTag: String){
         when(activityTag){
             "MainActivity" -> (mContext as MainActivity).intent(responseData)

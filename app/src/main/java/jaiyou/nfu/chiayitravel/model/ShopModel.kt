@@ -7,18 +7,18 @@ import jaiyou.nfu.chiayitravel.extension.parcelableCreatorOf
 data class ShopList(val results: List<ShopModel>)
 
 data class ShopModel(
-    val shopId: String,
-    val shopName: String,
-    val shopDescription: String,
-    val shopAdd: String,
-    val shopTel: String,
-    val shopOpentime: String,
-    val shopWebsite: String,
-    val shopPicture: String,
-    val shopPicdescribe: String,
-    val shopPx: String,
-    val shopPy: String,
-    val shopChangetime: String
+    private val shopId: String,
+    private val shopName: String,
+    private val shopDescription: String,
+    private val shopAdd: String,
+    private val shopTel: String,
+    private val shopOpentime: String,
+    private val shopWebsite: String,
+    private val shopPicture: String,
+    private val shopPicdescribe: String,
+    private val shopPx: String,
+    private val shopPy: String,
+    private val shopChangetime: String
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -48,6 +48,34 @@ data class ShopModel(
         parcel.writeString(shopPx)
         parcel.writeString(shopPy)
         parcel.writeString(shopChangetime)
+    }
+
+    fun getImage(): String{
+        return this.shopPicture
+    }
+
+    fun getName(): String{
+        return this.shopName
+    }
+
+    fun getTel(): String{
+        return this.shopTel
+    }
+
+    fun getAdd(): String{
+        return this.shopAdd
+    }
+
+    fun getDescription(): String{
+        return this.shopDescription
+    }
+
+    fun getWebsite(): String{
+        return this.shopWebsite
+    }
+
+    fun getOpentime(): String{
+        return this.shopOpentime
     }
 
     override fun describeContents(): Int {

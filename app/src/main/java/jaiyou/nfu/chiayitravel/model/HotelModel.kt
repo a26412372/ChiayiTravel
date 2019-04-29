@@ -7,18 +7,18 @@ import jaiyou.nfu.chiayitravel.extension.parcelableCreatorOf
 data class HotelList(val results: List<HotelModel>)
 
 data class HotelModel(
-    val hotelId:String,
-    val hotelName: String,
-    val hotelDescription: String,
-    val hotelAdd: String,
-    val hotelTel: String,
-    val hotelFax: String,
-    val hotelWebsite: String,
+    private val hotelId:String,
+    private val hotelName: String,
+    private val hotelDescription: String,
+    private val hotelAdd: String,
+    private val hotelTel: String,
+    private val hotelFax: String,
+    private val hotelWebsite: String,
     val hotelPicture: String,
     val hotelPicdescribe: String,
-    val hotelPx: String,
-    val hotelPy: String,
-    val hotelChangetime: String
+    private val hotelPx: String,
+    private val hotelPy: String,
+    private val hotelChangetime: String
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -48,6 +48,14 @@ data class HotelModel(
         parcel.writeString(hotelPx)
         parcel.writeString(hotelPy)
         parcel.writeString(hotelChangetime)
+    }
+
+    fun getName(): String{
+        return this.hotelName
+    }
+
+    fun getImage(): String{
+        return this.hotelPicture
     }
 
     override fun describeContents(): Int {

@@ -30,7 +30,7 @@ class ShopListActivity : AppCompatActivity(){
         setupView()
     }
 
-    fun getRespData(){
+    private fun getRespData(){
         respData = intent.extras.get("shopList").toString()         //取得intent過來的json
         val shop = Gson().fromJson<ShopList>(respData)      //解析json
         shopList = shop.results
