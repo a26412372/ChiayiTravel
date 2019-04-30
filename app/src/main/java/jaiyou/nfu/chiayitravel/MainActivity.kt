@@ -1,5 +1,7 @@
 package jaiyou.nfu.chiayitravel
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
@@ -32,31 +34,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews(){
-        //shoplist_button.setOnClickListener(shoplistButtonClickHandler)
+        shoplist_button.setOnClickListener(shoplistButtonClickHandler)
         hotellist_button.setOnClickListener(hotellistButtonClickHandler)
+
     }
 
-    /*private var shoplistButtonClickHandler = View.OnClickListener { view ->
-        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag).getResponse()   //這是取得商店資料用
-    }*/
+    private var shoplistButtonClickHandler = View.OnClickListener { view ->
+        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag, ShopListActivity::class.java).getResponse()   //這是取得商店資料用
+    }
 
     private var hotellistButtonClickHandler = View.OnClickListener { view ->
-        Connect("http://10.0.2.2/chiayitravel/hotel.php", this, activityTag).getResponse()  //這是取得飯店資料用
+        Connect("http://10.0.2.2/chiayitravel/hotel.php", this, activityTag, HotelListActivity::class.java).getResponse()  //這是取得飯店資料用
     }
 
-    /*//將resp到的資料傳到另一個activity
-    fun intent(resp: String){
-        val intent = Intent(this, ShopListActivity::class.java)
-        intent.putExtra("shopList", resp)
-        Log.d("shopList", resp)
-        startActivity(intent)
-    }*/
+
 
     //將resp到的資料傳到另一個activity
-    fun intent(resp: String){
-        val intent = Intent(this, HotelListActivity::class.java)
-        intent.putExtra("hotelList", resp)
-        Log.d("hotelList", resp)
+    fun intent(respData: String, emdActivity: Class<*>){
+        val intent = Intent(this, emdActivity)
+        intent.putExtra("List", respData)
+        Log.d("List", respData)
         startActivity(intent)
     }
 

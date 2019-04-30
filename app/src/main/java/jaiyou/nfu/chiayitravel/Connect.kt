@@ -1,6 +1,7 @@
 package jaiyou.nfu.chiayitravel
 
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 
@@ -10,26 +11,29 @@ import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 class Connect {
-    var mTag: String = ""   //用來判斷是哪個 Activity 呼叫連線
-    var responseData: String = ""
-    var mContext: Context? = null
-    var mUrl: String = ""
-    var mRequestBody: RequestBody? = null
-    var mRequest: Request? = null
+    private var mStartActivityTag: String = ""   //用來判斷是哪個 Activity 呼叫連線
+    private var mEndActivityTag: Class<*>
+    private var responseData: String = ""
+    private var mContext: Context? = null
+    private var mUrl: String = ""
+    private var mRequestBody: RequestBody? = null
+    private var mRequest: Request? = null
 
     //GET
-    constructor(url: String, context: Context, tag: String){
+    constructor(url: String, context: Context, startActivityTag: String, endActivityTag: Class<*>){
         this.mUrl = url
         this.mContext = context
-        this.mTag = tag
+        this.mStartActivityTag = startActivityTag
+        this.mEndActivityTag = endActivityTag
     }
 
     //POST
-    constructor(url: String, requestBody: RequestBody, context: Context, tag: String){
+    constructor(url: String, requestBody: RequestBody, context: Context, startActivityTag: String, endActivityTag: Class<*>){
         this.mUrl = url
         this.mRequestBody = requestBody
         this.mContext = context
-        this.mTag = tag
+        this.mStartActivityTag = startActivityTag
+        this.mEndActivityTag = endActivityTag
     }
 
     fun getResponse(){
@@ -53,7 +57,7 @@ class Connect {
                 override fun onResponse(call: Call, response: Response) {
                     //Log.d("resp", response!!.body()!!.string())
                     responseData = response!!.body()!!.string()
-                    intent(mTag)
+                    intent(mStartActivityTag, mEndActivityTag)
                 }
             })
         }catch (e: Exception){
@@ -63,9 +67,9 @@ class Connect {
     }
 
     //這邊是送resp的資料到activity
-    fun intent(activityTag: String){
-        when(activityTag){
-            "MainActivity" -> (mContext as MainActivity).intent(responseData)
+    fun intent(startActivityTag: String, endActivityTag: Class<*>){
+        when(startActivityTag){
+            "MainActivity" -> (mContext as MainActivity).intent(responseData, endActivityTag)
             "ShopListActivity" -> (mContext as ShopListActivity).intent(responseData)
         }
     }

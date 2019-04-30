@@ -59,7 +59,7 @@ class HotelListActivity : AppCompatActivity(), ExpandingFragment.OnExpandingClic
     }
 
     private fun getRespData(){
-        respData = intent.extras.get("hotelList").toString()         //取得intent過來的json
+        respData = intent.extras.get("List").toString()         //取得intent過來的json
         val hotel = Gson().fromJson<HotelList>(respData)      //解析json
         hotelList = hotel.results
         Log.d("Hotel", hotelList.toString())
