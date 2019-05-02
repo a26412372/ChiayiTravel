@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
         getHashKey()
 
-        //loginFaceBook()
+        loginFaceBook()
     }
 
     private fun loginFaceBook(){
