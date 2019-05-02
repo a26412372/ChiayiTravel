@@ -14,8 +14,8 @@ data class HotelModel(
     private val hotelTel: String,
     private val hotelFax: String,
     private val hotelWebsite: String,
-    val hotelPicture: String,
-    val hotelPicdescribe: String,
+    private val hotelPicture: String,
+    private val hotelPicdescribe: String,
     private val hotelPx: String,
     private val hotelPy: String,
     private val hotelChangetime: String
