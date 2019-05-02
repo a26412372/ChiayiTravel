@@ -28,7 +28,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity> <!-- facebook用的 -->
+        </activity>
+        <!-- facebook用的 -->
+        <!-- Facebook Start -->
+        <!-- FB Login -->
         <meta-data
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id"/>
@@ -54,6 +57,7 @@
                 android:name="com.facebook.FacebookContentProvider"
                 android:authorities="com.facebook.FacebookContentProvider"
                 android:exported="true"/>
+        <!-- Facebook End -->
     </application>
 
 </manifest>
