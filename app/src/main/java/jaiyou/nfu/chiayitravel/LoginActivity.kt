@@ -2,21 +2,26 @@ package jaiyou.nfu.chiayitravel
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.facebook.*
 import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
-import java.net.URI
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import com.facebook.FacebookActivity
 import com.facebook.login.LoginManager
+import org.json.JSONException
+import org.json.JSONObject
+import java.util.*
+
+import kotlin.Exception
+import kotlin.collections.ArrayList
 
 
 class LoginActivity : AppCompatActivity() {
@@ -37,14 +42,14 @@ class LoginActivity : AppCompatActivity() {
 
         getHashKey()
 
-        //loginFaceBook()
+        loginFaceBook()
 
 
         //method_1.判斷用戶是否登入過
-        if(Profile.getCurrentProfile() != null){
+        if(Profile.getCurrentProfile() != null) {
             var profile = Profile.getCurrentProfile()
             //取得用戶大頭照
-            var userPhoto = profile.getProfilePictureUri(300,300)
+            var userPhoto = profile.getProfilePictureUri(300, 300)
             var id = profile.id
             var name = profile.name
             Log.d(TAG, "Facebook userPhoto: " + userPhoto)
@@ -63,24 +68,54 @@ class LoginActivity : AppCompatActivity() {
         }*/
     }
 
-    private fun loginFaceBook(){
-        val permissions = ArrayList<String>()
+    fun loginFaceBook(){
+        var permissions = ArrayList<String>()
         permissions.add("public_profile")
         permissions.add("email")
         permissions.add("user_friends")
 
         loginManager!!.logInWithReadPermissions(this, permissions)
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult?) {
-
+            override fun onSuccess(loginResult: LoginResult) {
+                var graphRequest = GraphRequest.newMeRequest(loginResult.accessToken){`object`, response ->
+                    try {
+                        if (response.connection.responseCode == 200){
+                            Log.d(TAG, "Facebook JSONObject:" + `object`)
+                            var id = `object`.getLong("id")
+                            var name = `object`.getString("name")
+                            var email = `object`.getString("email")
+                            Log.d(TAG, "Facebook id:" + id)
+                            Log.d(TAG, "Facebook name:" + name)
+                            Log.d(TAG, "Facebook email" + email)
+                            //取得用戶大頭照
+                            var proflie = Profile.getCurrentProfile()
+                            //設定大頭照大小
+                            var userPhoto = proflie.getProfilePictureUri(300, 300)
+                            Log.d(TAG, "Facebook userPhoto: " + userPhoto)
+                            Glide.with(this@LoginActivity)
+                                .load(userPhoto.toString())
+                                .crossFade()
+                                .into(mImgPhoto)
+                            mTextDescription.setText(String.format(Locale.TAIWAN, "Name:%s\nE-mail:%s", name, email))
+                        }
+                    }catch (e: Exception){
+                    }catch (e: JSONException){
+                    }
+                }
+                // https://developers.facebook.com/docs/android/graph?locale=zh_TW
+                // 如果要取得email，需透過添加參數的方式來獲取(如下)
+                // 不添加只能取得id & name
+                val parameters = Bundle()
+                parameters.putString("fields", "id,name,email")
+                graphRequest.setParameters(parameters)
+                graphRequest.executeAsync()
             }
-
             override fun onCancel() {
-                textView.text = "Login Canceled"
+                Log.d(TAG, "Facebook onCancel")
             }
 
             override fun onError(error: FacebookException?) {
-
+                Log.d(TAG, "Facebook onError:" + error.toString())
             }
         })
     }
