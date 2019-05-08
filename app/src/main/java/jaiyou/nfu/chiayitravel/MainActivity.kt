@@ -1,5 +1,7 @@
 package jaiyou.nfu.chiayitravel
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
@@ -27,26 +29,33 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setupViews()
 
     }
 
     private fun setupViews(){
         shoplist_button.setOnClickListener(shoplistButtonClickHandler)
+        hotellist_button.setOnClickListener(hotellistButtonClickHandler)
+
     }
 
     private var shoplistButtonClickHandler = View.OnClickListener { view ->
-        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag).getResponse()   //這是取得資料用
+        Connect("http://10.0.2.2/chiayitravel/shop.php", this, activityTag, ShopListActivity::class.java).getResponse()   //這是取得商店資料用
     }
 
-    fun intent(resp: String){
-        val intent = Intent(this, ShopListActivity::class.java)
-        intent.putExtra("shopList", resp)
-        Log.d("shopList", resp)
+    private var hotellistButtonClickHandler = View.OnClickListener { view ->
+        Connect("http://10.0.2.2/chiayitravel/hotel.php", this, activityTag, HotelListActivity::class.java).getResponse()  //這是取得飯店資料用
+    }
+
+
+
+    //將resp到的資料傳到另一個activity
+    fun intent(respData: String, emdActivity: Class<*>){
+        val intent = Intent(this, emdActivity)
+        intent.putExtra("List", respData)
+        Log.d("List", respData)
         startActivity(intent)
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

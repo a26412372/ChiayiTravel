@@ -14,25 +14,25 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".AttractionListActivity">
+        </activity>
+        <activity android:name=".InfoActivity">
         </activity>
         <activity android:name=".HotelListActivity">
         </activity>
         <activity android:name=".ShopContentActivity">
         </activity>
-        <activity android:name=".ShopListActivity">
-        </activity>
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".AttractionActivity">
+        <activity android:name=".ShopListActivity">
+        </activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity> <!-- facebook用的 -->
-        <!-- Facebook Start -->
-        <!-- FB Login -->
         <meta-data
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id"/>

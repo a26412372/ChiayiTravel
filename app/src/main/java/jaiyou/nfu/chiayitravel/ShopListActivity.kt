@@ -30,8 +30,8 @@ class ShopListActivity : AppCompatActivity(){
         setupView()
     }
 
-    fun getRespData(){
-        respData = intent.extras.get("shopList").toString()         //取得intent過來的json
+    private fun getRespData(){
+        respData = intent.extras.get("List").toString()         //取得intent過來的json
         val shop = Gson().fromJson<ShopList>(respData)      //解析json
         shopList = shop.results
         Log.d("Shop", shopList.toString())
@@ -54,10 +54,10 @@ class ShopListActivity : AppCompatActivity(){
         shopListRecyclerView.adapter = adapter
     }
 
-    fun intent(resp: String){
+    fun intent(respData: String){
         val intent = Intent(this, ShopContentActivity::class.java)
-        intent.putExtra("shopContent", resp)
-        Log.d("shopContent", resp)
+        intent.putExtra("shopContent", respData)
+        Log.d("shopContent", respData)
         startActivity(intent)
     }
 
