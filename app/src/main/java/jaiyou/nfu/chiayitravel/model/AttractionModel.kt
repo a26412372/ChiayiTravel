@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import jaiyou.nfu.chiayitravel.extension.parcelableCreatorOf
 
-data class AttarctionList(val results: List<AttractionModel>)
+data class AttracttionList(val results: List<AttractionModel>)
 
 data class AttractionModel (
     private val attId: String,

@@ -11,11 +11,10 @@ object RetrofitClient {
         get() {
             if(ourInstance == null){
                 ourInstance = Retrofit.Builder()
-                    .baseUrl("https://jsonplaceholder.typicode.com/")
+                    .baseUrl("http://10.0.2.2/chiayitravel/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
-
             }
             return ourInstance!!
         }

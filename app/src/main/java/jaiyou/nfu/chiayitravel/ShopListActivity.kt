@@ -12,6 +12,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.gson.Gson
+import jaiyou.nfu.chiayitravel.OkHttp.NetCallBack
+import jaiyou.nfu.chiayitravel.OkHttp.NetClient
 import jaiyou.nfu.chiayitravel.adapter.ShopListAdapter
 import jaiyou.nfu.chiayitravel.extension.fromJson
 import jaiyou.nfu.chiayitravel.model.*
@@ -26,16 +28,33 @@ class ShopListActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_list)
-        getRespData()
-        setupView()
+
+        NetClient.getInstance().callGetNet("http://10.0.2.2/chiayitravel/shop.php", object: NetCallBack{
+            override fun onFailure(code: Int) {
+                Log.d("connect falid", code.toString())
+            }
+
+            override fun onResponse(json: String) {
+                //下面兩種方法都可以
+                //val shop = Gson().fromJson<ShopList>(json)
+                val shop: ShopList = Gson().fromJson(json)
+                shopList = shop.results
+                this@ShopListActivity.runOnUiThread(Runnable {
+                    setupView()
+                })
+                Log.d("shop", json)
+            }
+        })
+
+
     }
 
-    private fun getRespData(){
+    /*private fun getRespData(){
         respData = intent.extras.get("List").toString()         //取得intent過來的json
         val shop = Gson().fromJson<ShopList>(respData)      //解析json
         shopList = shop.results
         Log.d("Shop", shopList.toString())
-    }
+    }*/
 
     fun setupView(){
         shopListRecyclerView.layoutManager = LinearLayoutManager(this)
