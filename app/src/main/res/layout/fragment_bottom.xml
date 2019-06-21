@@ -11,11 +11,12 @@
               tools:context=".fragments.FragmentBottom">
 
     <TextView
+            android:id="@+id/button_title"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="license: every one can use this code to do everything" />
+    />
 
     <RelativeLayout
             android:layout_marginTop="10dp"

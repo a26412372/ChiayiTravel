@@ -5,53 +5,104 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="jaiyou.nfu.chiayitravel.MainActivity">
+        tools:context=".MainActivity">
 
 
-    <TextView
-            android:id="@+id/textView"
+    <ImageButton
+            android:id="@+id/imgbtn_hotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.403"/>
-
-    <Button
-            android:id="@+id/shoplist_button"
-            android:text="Button"
-            android:layout_width="181dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:src="@drawable/hotel_icon"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="65dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"/>
-    <Button
-            android:text="Button"
-            android:layout_width="181dp"
-            android:layout_height="44dp"
-            android:id="@+id/hotellist_button" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/shoplist_button" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-            android:text="Button"
-            android:layout_width="181dp"
-            android:layout_height="44dp"
-            android:id="@+id/attrlist_button" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/shoplist_button" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="92dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+            android:id="@+id/imgbtn_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shop_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="65dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="65dp"
+            android:layout_marginTop="92dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+            android:id="@+id/imgbtn_attraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/attraction_icon"
+            android:layout_below="@+id/imgbtn_shop"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="65dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="65dp"
+            android:layout_marginBottom="340dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="100dp" app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
+    <ImageButton
+            android:id="@+id/imgbtn_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_icon"
+            android:layout_below="@+id/imgbtn_hotel"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="65dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="65dp"
+            android:layout_marginBottom="340dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="100dp" app:layout_constraintTop_toBottomOf="@+id/textView4"/>
+    <TextView
+            android:text="飯店"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="95dp"
+            android:layout_marginStart="95dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtn_hotel"
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView3"/>
+    <TextView
+            android:text="商店"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtn_shop"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="95dp"
+            android:layout_marginRight="95dp"
+    />
+    <TextView
+            android:text="景點"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtn_attraction"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="95dp"
+            android:layout_marginStart="95dp"/>
+    <TextView
+            android:text="活動"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="95dp"
+            android:layout_marginRight="95dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgbtn_action"/>
 
 </android.support.constraint.ConstraintLayout>

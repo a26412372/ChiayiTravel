@@ -29,11 +29,11 @@ class ShopContentActivity : AppCompatActivity() {
     }
 
     fun setupView(){
-        tv_shop_name.setText(shopContent.get(position).getName())
-        tv_shop_description.setText(shopContent.get(position).getDescription())
-        tv_shop_phone.setText(shopContent.get(position).getTel())
-        tv_shop_address.setText(shopContent.get(position).getAdd())
-        tv_shop_website.setText(shopContent.get(position).getWebsite())
-        tv_shop_opentime.setText(shopContent.get(position).getOpentime())
+        tv_shop_name.setText(shopContent.get(position).name)
+        tv_shop_description.setText(shopContent.get(position).description)
+        tv_shop_phone.setText(shopContent.get(position).telephone)
+        tv_shop_address.setText(shopContent.get(position).address)
+        tv_shop_website.setText(shopContent.get(position).website)
+        tv_shop_opentime.setText(shopContent.get(position).open_time)
     }
 }

@@ -23,7 +23,6 @@ class ShopListAdapter (val items: List<ShopModel>) : RecyclerView.Adapter<ShopLi
         return ViewHolder(view)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder?.bind(items[position])
         holder.itemView.setOnClickListener {
@@ -39,9 +38,9 @@ class ShopListAdapter (val items: List<ShopModel>) : RecyclerView.Adapter<ShopLi
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(item: ShopModel){
             //set description
-            itemView.descriptionTextView.text = item.getName()
+            itemView.descriptionTextView.text = item.name
 
-            Picasso.get().load(item.getImage()).into(itemView.imageView)
+            Picasso.get().load(item.picture).into(itemView.imageView)
 
         }
     }

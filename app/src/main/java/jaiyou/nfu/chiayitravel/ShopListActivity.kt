@@ -45,8 +45,6 @@ class ShopListActivity : AppCompatActivity(){
                 Log.d("shop", json)
             }
         })
-
-
     }
 
     /*private fun getRespData(){

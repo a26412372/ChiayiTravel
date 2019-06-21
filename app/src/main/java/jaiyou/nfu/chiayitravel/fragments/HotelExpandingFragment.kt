@@ -51,6 +51,6 @@ class HotelExpandingFragment: ExpandingFragment() {
      * @return
      */
     override fun getFragmentBottom(): Fragment {
-        return FragmentBottom.newInstance()
+        return FragmentBottom.newInstance(hotelModel)
     }
 }

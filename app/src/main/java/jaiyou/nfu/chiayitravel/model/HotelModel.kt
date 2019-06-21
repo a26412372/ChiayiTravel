@@ -7,18 +7,16 @@ import jaiyou.nfu.chiayitravel.extension.parcelableCreatorOf
 data class HotelList(val results: List<HotelModel>)
 
 data class HotelModel(
-    private val hotelId:String,
-    private val hotelName: String,
-    private val hotelDescription: String,
-    private val hotelAdd: String,
-    private val hotelTel: String,
-    private val hotelFax: String,
-    private val hotelWebsite: String,
-    private val hotelPicture: String,
-    private val hotelPicdescribe: String,
-    private val hotelPx: String,
-    private val hotelPy: String,
-    private val hotelChangetime: String
+    val hotelId:String,
+    val name: String,
+    val description: String,
+    val address: String,
+    val telephone: String,
+    val website: String,
+    val picture: String,
+    val Px: String,
+    val Py: String,
+    val ownerId: Int
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -30,32 +28,20 @@ data class HotelModel(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(hotelId)
-        parcel.writeString(hotelName)
-        parcel.writeString(hotelDescription)
-        parcel.writeString(hotelAdd)
-        parcel.writeString(hotelTel)
-        parcel.writeString(hotelFax)
-        parcel.writeString(hotelWebsite)
-        parcel.writeString(hotelPicture)
-        parcel.writeString(hotelPicdescribe)
-        parcel.writeString(hotelPx)
-        parcel.writeString(hotelPy)
-        parcel.writeString(hotelChangetime)
-    }
-
-    fun getName(): String{
-        return this.hotelName
-    }
-
-    fun getImage(): String{
-        return this.hotelPicture
+        parcel.writeString(name)
+        parcel.writeString(description)
+        parcel.writeString(address)
+        parcel.writeString(telephone)
+        parcel.writeString(website)
+        parcel.writeString(picture)
+        parcel.writeString(Px)
+        parcel.writeString(Py)
+        parcel.writeInt(ownerId)
     }
 
     override fun describeContents(): Int {

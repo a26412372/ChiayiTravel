@@ -7,18 +7,17 @@ import jaiyou.nfu.chiayitravel.extension.parcelableCreatorOf
 data class AttracttionList(val results: List<AttractionModel>)
 
 data class AttractionModel (
-    private val attId: String,
-    private val attName: String,
-    private val attDescription: String,
-    private val attAdd: String,
-    private val attTel: String,
-    private val attOpentime: String,
-    private val attWebsite: String,
-    private val attPicture: String,
-    private val attPicdescribe: String,
-    private val attPx: String,
-    private val attPy: String,
-    private val attChangetime: String
+    val attrId: String,
+    val name: String,
+    val description: String,
+    val address: String,
+    val telephone: String,
+    val open_time: String,
+    val website: String,
+    val picture: String,
+    val Px: String,
+    val Py: String,
+    val ownerId: Int
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -31,52 +30,23 @@ data class AttractionModel (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
+        parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(attId)
-        parcel.writeString(attName)
-        parcel.writeString(attDescription)
-        parcel.writeString(attAdd)
-        parcel.writeString(attTel)
-        parcel.writeString(attOpentime)
-        parcel.writeString(attWebsite)
-        parcel.writeString(attPicture)
-        parcel.writeString(attPicdescribe)
-        parcel.writeString(attPx)
-        parcel.writeString(attPy)
-        parcel.writeString(attChangetime)
+        parcel.writeString(attrId)
+        parcel.writeString(name)
+        parcel.writeString(description)
+        parcel.writeString(address)
+        parcel.writeString(telephone)
+        parcel.writeString(open_time)
+        parcel.writeString(website)
+        parcel.writeString(picture)
+        parcel.writeString(Px)
+        parcel.writeString(Py)
+        parcel.writeInt(ownerId)
     }
 
-    fun getImage(): String{
-        return this.attPicture
-    }
-
-    fun getName(): String{
-        return this.attName
-    }
-
-    fun getTel(): String{
-        return this.attTel
-    }
-
-    fun getAdd(): String{
-        return this.attAdd
-    }
-
-    fun getDescription(): String{
-        return this.attDescription
-    }
-
-    fun getWebsite(): String{
-        return this.attWebsite
-    }
-
-    fun getOpentime(): String{
-        return this.attOpentime
-    }
 
     override fun describeContents(): Int {
         return 0

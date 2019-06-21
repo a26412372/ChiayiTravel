@@ -21,7 +21,6 @@ import jaiyou.nfu.chiayitravel.adapter.HotelViewPagerAdapter
 import jaiyou.nfu.chiayitravel.extension.fromJson
 import jaiyou.nfu.chiayitravel.model.HotelList
 import jaiyou.nfu.chiayitravel.model.HotelModel
-import jaiyou.nfu.chiayitravel.model.ShopList
 import jaiyou.nfu.chiayitravel.model.Travel
 import kotlinx.android.synthetic.main.activity_hotel_list.*
 
@@ -56,7 +55,7 @@ class HotelListActivity : AppCompatActivity(), ExpandingFragment.OnExpandingClic
                     val hotel: HotelList = Gson().fromJson(json)
                     hotelList = hotel.results
                     setupView(hotelList)
-                    Log.d("hotel", hotelList.get(0).getName())
+                    Log.d("hotel", hotelList.get(0).name)
                 })
             }
         })

@@ -13,6 +13,7 @@ import jaiyou.nfu.chiayitravel.R
 import jaiyou.nfu.chiayitravel.model.HotelModel
 import jaiyou.nfu.chiayitravel.model.Travel
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_bottom.*
 import kotlinx.android.synthetic.main.fragment_front.*
 
 
@@ -46,8 +47,9 @@ class FragmentTop : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (hotelModel != null) {
-            Picasso.get().load(hotelModel!!.getImage()).into(front_image)
-            front_title.setText(hotelModel!!.getName())
+            Picasso.get().load(hotelModel!!.picture).into(front_image)
+            front_title.setText(hotelModel!!.name)
+
         }
 
     }

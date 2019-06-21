@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews(){
-        shoplist_button.setOnClickListener(shoplistButtonClickListener)
-        hotellist_button.setOnClickListener(hotellistButtonClickListener)
-        attrlist_button.setOnClickListener(attrListButtonClickListener)
+        imgbtn_shop.setOnClickListener(shoplistButtonClickListener)
+        imgbtn_hotel.setOnClickListener(hotellistButtonClickListener)
+        imgbtn_attraction.setOnClickListener(attrListButtonClickListener)
     }
 
     private var attrListButtonClickListener = View.OnClickListener {

@@ -16,6 +16,10 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import com.facebook.FacebookActivity
 import com.facebook.login.LoginManager
+import jaiyou.nfu.chiayitravel.OkHttp.NetCallBack
+import jaiyou.nfu.chiayitravel.OkHttp.NetClient
+import okhttp3.FormBody
+import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -28,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
 
     private val TAG = FacebookActivity::class.java.simpleName
     private var callbackManager: CallbackManager? = null
-    private var loginManager: LoginManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +40,9 @@ class LoginActivity : AppCompatActivity() {
         //init facebook
         FacebookSdk.sdkInitialize(applicationContext)
         //AppEventsLogger.activateApp(this)
-        loginManager = LoginManager.getInstance()
         callbackManager = CallbackManager.Factory.create()
 
         getHashKey()
-
-        loginFaceBook()
 
 
         //method_1.判斷用戶是否登入過
@@ -55,6 +55,8 @@ class LoginActivity : AppCompatActivity() {
             Log.d(TAG, "Facebook userPhoto: " + userPhoto)
             Log.d(TAG, "Facebook id: " + id)
             Log.d(TAG, "Facebook name: " + name)
+        }else{
+            loginFaceBook()
         }
 
         // method_2.判斷用戶是否登入過
@@ -74,7 +76,8 @@ class LoginActivity : AppCompatActivity() {
         permissions.add("email")
         permissions.add("user_friends")
 
-        loginManager!!.logInWithReadPermissions(this, permissions)
+        LoginManager.getInstance().logInWithReadPermissions(this, permissions)
+
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 var graphRequest = GraphRequest.newMeRequest(loginResult.accessToken){`object`, response ->
@@ -92,11 +95,28 @@ class LoginActivity : AppCompatActivity() {
                             //設定大頭照大小
                             var userPhoto = proflie.getProfilePictureUri(300, 300)
                             Log.d(TAG, "Facebook userPhoto: " + userPhoto)
-                            Glide.with(this@LoginActivity)
+
+                            val requestBody = FormBody.Builder()
+                                .add("fbId", id.toString())
+                                .add("fbName", name)
+                                .add("fbEmail", email)
+                                .add("fbPhoto", userPhoto.toString())
+                                .build()
+                            NetClient.getInstance()
+                                .callPostNet("http://10.0.2.2/chiayitravel/fb_member.php", requestBody, object : NetCallBack{
+                                override fun onFailure(code: Int) {
+                                    Log.d("connect falid", code.toString())
+                                }
+
+                                override fun onResponse(json: String) {
+                                    Log.d("connect success", "")
+                                }
+                            })
+                            /*Glide.with(this@LoginActivity)
                                 .load(userPhoto.toString())
                                 .crossFade()
-                                .into(mImgPhoto)
-                            mTextDescription.setText(String.format(Locale.TAIWAN, "Name:%s\nE-mail:%s", name, email))
+                                .into(mImgPhoto)*/
+                            //mTextDescription.setText(String.format(Locale.TAIWAN, "Name:%s\nE-mail:%s", name, email))
                         }
                     }catch (e: Exception){
                     }catch (e: JSONException){

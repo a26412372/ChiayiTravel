@@ -27,8 +27,12 @@ class InfoActivity : AppCompatActivity() {
 
         var hotelModel = intent.getParcelableExtra<HotelModel>(EXTRA_TRAVEL)
         if (hotelModel != null){
-            Picasso.get().load(hotelModel.getImage()).into(info_image)
-            info_title.setText(hotelModel.getName())
+            Picasso.get().load(hotelModel.picture).into(info_image)
+            info_name.setText(hotelModel.name)
+            info_description.setText(hotelModel.description)
+            info_address.setText(hotelModel.address)
+            info_telephone.setText(hotelModel.telephone)
+            info_website.setText(hotelModel.website)
         }
     }
 }
