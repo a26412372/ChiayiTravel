@@ -42,8 +42,9 @@ class HotelListActivity : AppCompatActivity(), ExpandingFragment.OnExpandingClic
             Log.d("thread", "Not Main Thread");
         }
 
+
         //這是新方法，在這個Activity完成網路請求
-        NetClient.getInstance().callGetNet("http://10.0.2.2/chiayitravel/hotel.php", object: NetCallBack{
+        NetClient.instance.callGetNet("http://10.0.2.2/chiayitravel/hotel.php", object: NetCallBack{
             override fun onFailure(code: Int) {
                 Log.d("connect falid", code.toString())
             }

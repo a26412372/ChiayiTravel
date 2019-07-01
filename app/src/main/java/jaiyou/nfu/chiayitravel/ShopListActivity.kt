@@ -29,7 +29,7 @@ class ShopListActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_list)
 
-        NetClient.getInstance().callGetNet("http://10.0.2.2/chiayitravel/shop.php", object: NetCallBack{
+        NetClient.instance.callGetNet("http://10.0.2.2/chiayitravel/shop.php", object: NetCallBack{
             override fun onFailure(code: Int) {
                 Log.d("connect falid", code.toString())
             }

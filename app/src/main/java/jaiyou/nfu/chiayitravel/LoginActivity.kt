@@ -44,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
 
         getHashKey()
 
-
         //method_1.判斷用戶是否登入過
         if(Profile.getCurrentProfile() != null) {
             var profile = Profile.getCurrentProfile()
@@ -102,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                                 .add("fbEmail", email)
                                 .add("fbPhoto", userPhoto.toString())
                                 .build()
-                            NetClient.getInstance()
+                            NetClient.instance
                                 .callPostNet("http://10.0.2.2/chiayitravel/fb_member.php", requestBody, object : NetCallBack{
                                 override fun onFailure(code: Int) {
                                     Log.d("connect falid", code.toString())
