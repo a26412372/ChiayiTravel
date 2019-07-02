@@ -41,7 +41,7 @@ class NetClient {
             .newCall(request)
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                //請求網路失敗，调用自己的接口，通过传回的-1可以知道错误类型
+                //請求網路失敗，調用自己的介面街口，通過傳回的-1可以知道錯誤類型
                 mCallback.onFailure(-1)
             }
 
